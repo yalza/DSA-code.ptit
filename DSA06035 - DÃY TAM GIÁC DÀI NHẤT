@@ -1,0 +1,38 @@
+#include<iostream>
+#include<set>
+#include<climits>
+#include<algorithm>
+#include<vector>
+using namespace std;
+typedef long long ll;
+typedef pair<int, int> p;
+int main() {
+	int t; cin >> t;
+	while (t--) {
+		int n; cin >> n;
+		int M[100000];
+		for (int i = 0; i < n; i++)cin >> M[i];
+		M[n] = 0;
+		vector<p> X;
+		int cnt = 1;
+		for (int i = 1; i <= n; i++) {
+			if (M[i] > M[i - 1]) {
+				cnt++;
+			}
+			else {
+				X.push_back({ i,cnt });
+				cnt = 1;
+			}
+		}
+		int res = 0;
+		for (p x : X) {
+			cnt = 0;
+			for (int i = x.first; i < n && i>0; i++) {
+				if (M[i] < M[i - 1])cnt++;
+				else break;
+			}
+			res = max(res, x.second + cnt);
+		}
+		cout << res << endl;
+	}
+}
