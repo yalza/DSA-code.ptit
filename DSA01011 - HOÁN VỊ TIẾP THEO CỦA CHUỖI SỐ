@@ -1,0 +1,33 @@
+#include<iostream>
+#include<set>
+#include<climits>
+#include<algorithm>
+#include<vector>
+using namespace std;
+typedef long long ll;
+typedef pair<int, int> p;
+void sinh(string s, int n) {
+	int i = n - 1;
+	while (i >= 0 && s[i] >= s[i + 1])i--;
+	if (i < 0)cout << "BIGGEST\n";
+	else {
+		int k = n;
+		while (s[k] <= s[i])k--;
+		swap(s[k], s[i]);
+		int l = i + 1, r = n;
+		while (l < r) {
+			swap(s[l], s[r]);
+			l++; r--;
+		}
+		cout << s << endl;
+	}
+}
+int main() {
+	int t; cin >> t;
+	while (t--) {
+		int n; cin >> n;
+		string s; cin >> s;
+		cout << n << " ";
+		sinh(s, s.length() - 1);
+	}
+}
