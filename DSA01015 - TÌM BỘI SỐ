@@ -1,0 +1,32 @@
+#include<iostream>
+using namespace std;
+typedef long long ll;
+bool ok;
+ll boiso(int n) {
+	for (int k = 2; k <= n; k++) {
+		int M[100] = { 0 };
+		ok = false;
+		while (!ok) {
+			int a = 0;
+			for (int i = k; i > 0; i--) {
+				if (M[i] == 0) {
+					M[i] = 1;
+					a = 1;
+					for (int j = i + 1; j <= k; j++)M[j] = 0;
+					break;
+				}
+			}
+			ll m = 0;
+			for (int l = 1; l <= k; l++)m = m * 10 + M[l];
+			if (9 * m % n == 0)return 9 * m;
+			if (a == 0)ok = true;
+		}
+	}
+}
+int main() {
+	int t; cin >> t;
+	while (t--) {
+		int n; cin >> n;
+		cout << boiso(n) << endl;
+	}
+}
