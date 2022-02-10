@@ -1,0 +1,47 @@
+#include<iostream>
+#include<algorithm>
+#include<stdbool.h>
+using namespace std;
+bool ok = false;
+void sinh(int* M, int n, int k) {
+	int a = 0;
+	for (int i = k; i >= 1; i--) {
+		if (M[i] != n - k + i) {
+			M[i]++;
+			for (int j = i + 1; j <= k; j++)
+				M[j] = M[j - 1] + 1;
+			a = 1;
+			break;
+		}
+	}
+	if (a == 0)ok = true;
+}
+bool ktra( int* N, int n, int k,int x) {
+	int sum = 0;
+	for (int i = 1; i <= k; i++) {
+		sum += N[i];
+		if (sum > x)return false;
+	}
+	if (sum == x)return true;
+	return false;
+}
+int main() {
+	while (1) {
+		int n, k,x; cin >> n >> k>>x;
+		ok = false;
+		if (k > n) {
+			cout << 0 << endl;
+		}
+		else {
+			if (x == 0 && n == 0 && k == 0)break;
+			int N[100];
+			for (int i = 1; i <= k; i++)N[i] = i;
+			int res = 0;
+			while (!ok) {
+				if (ktra(N, n, k, x))res++;
+				sinh(N, n, k);
+			}
+			cout << res << endl;
+		}
+	}
+}
