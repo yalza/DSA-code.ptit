@@ -1,0 +1,48 @@
+#include<iostream>
+#include<vector>
+#include<string>
+#include<algorithm>
+using namespace std;
+void xuat(int n, int a[], vector<string>& tmp) {
+	string s = "";
+	for (int i = 1; i <= n; i++) {
+		if (a[i] == 1)s = s + "A";
+		else s = s + "B";
+	}
+	tmp.push_back(s);
+}
+void sinh(int n, int a[], int& ok) {
+	int i = n;
+	while (i > 0 && a[i] == 1) { a[i] = 0; i--; }
+	if (i > 0)a[i] = 1;
+	else ok = 0;
+}
+void dieukhien(int n, int a[], int k, vector<string>& tmp) {
+	int dem = 0;
+	int xn = 0;
+	for (int i = 1; i <= n; i++) {
+		if (a[i] == 1) {
+			dem++;
+			if (dem == k)xn = dem;
+			if (dem > k)break;
+		}
+		else dem = 0;
+	}
+	if (dem <= xn && xn == k) {
+		xuat(n, a, tmp);
+	}
+}
+int main() {
+	int n, k; cin >> n >> k;
+	int a[20];
+	vector<string>tmp;
+	for (int i = 1; i <= n; i++)a[i] = 0;
+	int ok = 1;
+	while (ok) {
+		sinh(n, a, ok);
+		dieukhien(n, a, k, tmp);
+	}
+	cout << tmp.size() << endl;
+	sort(tmp.begin(), tmp.end());
+	for (int i = 0; i < tmp.size(); i++)cout << tmp[i] << endl;
+}
