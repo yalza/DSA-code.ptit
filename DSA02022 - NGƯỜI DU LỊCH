@@ -1,0 +1,33 @@
+#include<iostream>
+#include<vector>
+#include<algorithm>
+#include<math.h>
+#include<string>
+#include<queue>
+using namespace std;
+typedef pair<int, int> p;
+typedef long long ll;
+int n, res=100000000;
+int M[100][100], N[100];
+bool check[100];
+void Try(int i,int sum) {
+	for (int j = 2; j <= n; j++) {
+		if (!check[j]) {
+			check[j] = true;
+			N[i] = j;
+			if (i == n) {
+				res = min(res, sum + M[j][1]+ M[N[i - 1]][j]);
+			}
+			else if (res > sum && i < n)Try(i + 1, sum + M[N[i-1]][j]);
+			check[j] = false;
+		}
+	}
+}
+int main() {
+	cin >> n;
+	for (int i = 1; i <= n; i++)for (int j = 1; j <= n; j++)cin >> M[i][j];
+	check[1] = true;
+	N[1] = 1;
+	Try(2,0);
+	cout << res << endl;
+}
