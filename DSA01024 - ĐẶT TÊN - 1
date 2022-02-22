@@ -1,0 +1,36 @@
+#include<iostream>
+#include<vector>
+#include<set>
+using namespace std;
+bool ok;
+void sinh(int M[], int n, int k) {
+	int a = 0;
+	for (int i = k - 1; i >= 0; i--) {
+		if (M[i] != n - k + i) {
+			a++;
+			M[i]++;
+			for (int j = i + 1; j < k; j++)M[j] = M[j - 1] + 1;
+			break;
+		}
+	}
+	if (a == 0)ok = true;
+}
+int main() {
+	int n, k; cin >> n >> k;
+	vector<string> S;
+	set<string> X;
+	for (int i = 0; i < n; i++) {
+		string s; cin >> s;
+		X.insert(s);
+	}
+	for (auto x : X)S.push_back(x);
+	int M[100];
+	for (int i = 0; i < k; i++)M[i] = i + 1;
+	while (!ok) {
+		for (int i = 0; i < k; i++) {
+			cout << S[M[i] - 1] << " ";
+		}
+		cout << endl;
+		sinh(M, S.size() + 1, k);
+	}
+}
