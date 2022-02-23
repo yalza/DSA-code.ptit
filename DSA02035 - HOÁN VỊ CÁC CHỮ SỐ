@@ -1,0 +1,46 @@
+#include<iostream>
+#include<algorithm>
+using namespace std;
+bool ok;
+void sinh(int* M, int n) {
+	int a = 0;
+	for (int i = n - 1; i > 0; i--) {
+		if (M[i] < M[i + 1]) {
+			a = 1;
+			int k = n;
+			while (M[i] > M[k])k--;
+			swap(M[i], M[k]);
+			int l = i + 1, r = n;
+			while (l < r) {
+				swap(M[l], M[r]);
+				l++; r--;
+			}
+			break;
+		}
+	}
+	if (a == 0)ok = true;
+}
+typedef long long ll;
+int main() {
+	int n, k; cin >> n >> k;
+	string S[10];
+	for (int i = 0; i < n; i++)cin >> S[i];
+	
+	int M[100];
+	int res = 100000000;
+	for (int i = 1; i <= k; i++)M[i] = i;
+	while (!ok) {
+		int minn = 100000000, maxx = 0;
+		for (int i = 0; i < n; i++) {
+			int a = 0;
+			for (int l = 1; l <= k; l++) {
+				a = a * 10 + S[i][M[l] - 1]-'0';
+			}
+			minn = min(minn, a);
+			maxx = max(maxx, a);
+		}
+		res = min(res, maxx - minn);
+		sinh(M, k);
+	}
+	cout << res << endl;
+}
