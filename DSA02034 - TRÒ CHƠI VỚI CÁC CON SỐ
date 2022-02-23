@@ -1,0 +1,44 @@
+#include<iostream>
+using namespace std;
+bool ok;
+void sinh(int* M, int n) {
+	int a = 0;
+	for (int i = n - 1; i > 0; i--) {
+		if (M[i] < M[i + 1]) {
+			a = 1;
+			int k = n;
+			while (M[i] > M[k])k--;
+			swap(M[i], M[k]);
+			int l = i + 1, r = n;
+			while (l < r) {
+				swap(M[l], M[r]);
+				l++; r--;
+			}
+			break;
+		}
+	}
+	if (a == 0)ok = true;
+}
+bool ktra(int* N, int n) {
+	for (int i = 2; i <= n; i++) {
+		if (abs(N[i] - N[i - 1]) == 1)return false;
+	}
+	return true;
+}
+int main() {
+	int t; cin >> t;
+	while (t--) {
+		ok = false;
+		int n; cin >> n;
+		int N[100];
+		for (int i = 1; i <= n; i++)N[i] = i;
+		while (!ok) {
+			if (ktra(N, n)) {
+				for (int i = 1; i <= n; i++)cout << N[i];
+				cout << endl;
+			}
+			sinh(N, n);
+		}
+		cout << endl;
+	}
+}
