@@ -1,0 +1,50 @@
+#include<iostream>
+#include<string>
+#include<vector>
+#include<stdbool.h>
+#include<algorithm>
+#include<set>
+using namespace std;
+bool ok = false;
+void Chl(int* M, int n, int k) {
+	int a = 0;
+	for (int i = k; i > 0; i--) {
+		if (M[i] != n) {
+			M[i]++;
+			for (int j = i + 1; j <= n; j++)M[j] = 1;
+			a = 1;
+			break;
+		}
+	}
+	if (a == 0)ok = true;
+}
+int test(int M[], int k) {
+	for (int i = 2; i <= k; i++)
+		if (M[i - 1] > M[i])return 0;
+	return 1;
+}
+int main() {
+	char c; cin >> c;
+	int k, n; cin >> k;
+	n = c - 64;
+	int M[100];
+	for (int i = 1; i <= k; i++)M[i] = i;
+	int x = 0;
+	int N[100];
+	for (int i = 1; i <= n; i++)N[i] = 1;
+	set<string> V;
+	while (!ok) {
+		if (test(N, k)) {
+			string s;
+			for (int i = 1; i <= k; i++)
+				s.push_back(64 + N[i]);
+			V.insert(s);
+			x++;
+		}
+		Chl(N, n, k);
+	}
+	while (V.size()) {
+		cout << *V.begin() << endl;
+		V.erase(*V.begin());
+	}
+}
