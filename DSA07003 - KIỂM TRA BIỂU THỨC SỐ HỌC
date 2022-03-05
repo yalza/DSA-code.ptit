@@ -1,0 +1,26 @@
+#include<iostream>
+#include<string>
+#include<stack>
+using namespace std;
+string ktra(string s) {
+	stack<char> X;
+	for (auto x : s) {
+		if (x == ')') {
+			bool check = true;
+			while (X.top() != '(') {
+				if (X.top() == '*' || X.top() == '/' || X.top() == '+' || X.top() == '-')check = false;
+				X.pop();
+			}
+			if (check)return "Yes\n";
+		}
+		else X.push(x);
+	}
+	return "No\n";
+}
+int main() {
+	int t; cin >> t;
+	while (t--) {
+		string s; cin >> s;
+		cout << ktra(s);
+	}
+}
