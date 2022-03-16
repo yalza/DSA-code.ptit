@@ -28,20 +28,9 @@ void Try(int i, vector<int> M, int n, string s) {
 						return;
 					}
 				if (X[3] == '-')
-					if (a - b == c){
+					if (a - b == c) {
 						cout << X << endl;
 						ok = true;
-						return;
-				}
-				if (X[3] == '*')
-					if (a * b == c) {
-						cout << X << endl;
-						ok = true;
-						return;
-					}
-				if (X[3] == '/')
-					if ((float)a / (float)b == (float)c) {
-						cout << X << endl; ok = true;
 						return;
 					}
 				if (X[3] == '?') {
@@ -53,18 +42,6 @@ void Try(int i, vector<int> M, int n, string s) {
 					}
 					if (a - b == c) {
 						X[3] = '-';
-						cout << X << endl;
-						ok = true;
-						return;
-					}
-					if (a * b == c) {
-						X[3] = '*';
-						cout << X << endl;
-						ok = true;
-						return;
-					}
-					if ((float)a / (float)b == (float)c) {
-						X[3] = '/';
 						cout << X << endl;
 						ok = true;
 						return;
