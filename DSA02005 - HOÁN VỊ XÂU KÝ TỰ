@@ -1,0 +1,31 @@
+#include<iostream>
+#include<string>
+using namespace std;
+int n, M[11], chuaxet[11];
+string s;
+void Try(int i) {
+	for (int j = 0; j < s.size(); j++) {
+		if (chuaxet[j] == true) {
+			M[i] = j;
+			chuaxet[j] = false;
+			if (i == s.size()) {
+				for (int b = 1; b <= s.size(); b++)
+					cout << s[M[b]];
+				cout << " ";
+			}
+			else Try(i + 1);
+			chuaxet[j] = true;
+		}
+	}
+}
+int main() {
+	int t; cin >> t;
+	while (t--) {
+		cin >> s;
+		n = s.size();
+		for (int i = 0; i < n; i++)chuaxet[i] = true;
+		Try(1);
+		cout << endl;
+	}
+	return 0;
+}
