@@ -24,7 +24,7 @@ using namespace std;
 
 
 ll to_Hop(int n, int k) {
-	ll dp[1010][1010];
+	ll dp[110][110];
 	FORD(i, 0, n + 1) {
 		FORD(j, 0, k + 1) {
 			if (i == j || j == 0)dp[i][j] = 1;
@@ -37,9 +37,9 @@ ll to_Hop(int n, int k) {
 
 int main() {
 	int t; cin >> t;
-	ll dp[1001];
+	ll dp[101];
 	dp[1] = 10;
-	FORD(i, 2, 1001)dp[i] = dp[i - 1] % mod + to_Hop(8 + i, i) % mod, dp[i] %= mod;
+	FORD(i, 2, 101)dp[i] = dp[i - 1] % mod + to_Hop(8 + i, i) % mod, dp[i] %= mod;
 	while (t--) {
 		int n; cin >> n;
 		cout << dp[n] << endl;
