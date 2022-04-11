@@ -55,27 +55,18 @@ int main() {
 			res = 0;
 			FORD(i, 1, n) {
 				int mayy = 0;
-				if (i > 1)
-					for (auto y : X) {
-						mayy = max(mayy, dp[i - 2][y.f][y.s]);
-					}
+				if (i > 1)for (auto y : X)mayy = max(mayy, dp[i - 2][y.f][y.s]);
 				for (auto x : X) {
 					int maxx = 0, mazz = INT_MIN;
 					for (auto y : X) {
-						if (x.f != y.f && x.f != y.s && x.s != y.f && x.s != y.s) {
-							maxx = max(mayy, max(maxx, dp[i - 1][y.f][y.s]));
-						}
+						if (x.f != y.f && x.f != y.s && x.s != y.f && x.s != y.s) maxx = max(mayy, max(maxx, dp[i - 1][y.f][y.s]));
 						mazz = max(mazz, dp[i - 1][y.f][y.s]);
 					}
 					if (Y.count(i) != 0)dp[i][x.f][x.s] = dp[i][x.f][x.s] + mazz;
-					else {
-						dp[i][x.f][x.s] = dp[i][x.f][x.s] + maxx;
-					}
+					else dp[i][x.f][x.s] = dp[i][x.f][x.s] + maxx;
 				}
 			}
-			FORD(i, 0, n) {
-				for (auto x : X)res=max(res,dp[i][x.f][x.s]);
-			}
+			FORD(i, 0, n) for (auto x : X)res=max(res,dp[i][x.f][x.s]);
 			cout << res << endl;
 		}
 	}
