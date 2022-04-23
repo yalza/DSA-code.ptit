@@ -1,40 +1,44 @@
-#include<iostream>
-#include<set>
-#include<climits>
-#include<algorithm>
-#include<vector>
+#include<bits/stdc++.h>
+#define mod				 1000000007
+#define ll				 long long
+#define	p(x)			 pair<x,x>
+#define v(x)			 vector<x>
+#define tree			 node*
+#define sz(a)			 a.size()
+#define f 				 first
+#define s 				 second
+#define pb(a)			 push_back(a)
+#define pf(a)			 push_front(a)
+#define FOR(i,l,r)		 for(int i=l;i<r;i++)
+#define FORX(i,l,r,x)	 for(int i=l;i<r;i+=x)
+#define FORD(i,l,r)		 for(int i=l;i>=r;i--)
+#define correct(x,y,n,m) 0<=(x)&&(x)<(n)&&0<=(y)&&(y)<(m)
+#define cin(M,n)		 FOR(i,0,n)cin>>M[i]
+#define cout(M,n)		 FOR(i,0,n)cout<<M[i]<<" "
+#define rs(M,x)		     memset(M,x,sizeof(M))
+#define reset()			 FOR(i, 0, 1000001)A[i].clear(),check[i]=false
+#define faster()		 cin.tie(0); ios_base::sync_with_stdio(false); cout.tie(0);
+#define run()			 int t; cin >> t; while (t--)
+#define pq(x )			 priority_queue<x>
+#define neg_pq(x)		 priority_queue<x, vector<x>, greater<x>>
+#define all(M)			 M.begin(),M.end()
 using namespace std;
-typedef long long ll;
-typedef pair<int, int> p;
 
-bool ok;
-void sinh(int* M, int n) {
-	int a = 0;
-	for (int i = n - 1; i >= 0; i--) {
-		if (M[i] == 0) {
-			M[i] = 1;
-			for (int j = i + 1; j < n; j++) {
-				M[j] = 0;
-			}
-			a = 1;
-			break;
-		}
-	}
-	if (a == 0)ok = true;
-}
-bool ktra(int* M, int n) {
-	for (int i = 0; i < n; i++)
-		if (M[i] != M[n - i - 1])return false;
-	return true;
-}
+//_______________________NGUYỄN_NGỌC_TOÀN_______________________//
+
+
 int main() {
+	faster();
 	int n; cin >> n;
-	int M[1000] = { 0 };
-	while (!ok) {
-		if (ktra(M, n)) {
-			for (int i = 0; i < n; i++)cout << M[i] << " ";
+	FOR(i, 0, pow(2, n)) {
+		auto s = bitset<20>(i).to_string();
+		string tmp = s = s.substr(20 - n, n);
+		reverse(all(tmp));
+		if (s == tmp) {
+			cout(s, n);
 			cout << endl;
 		}
-		sinh(M, n);
 	}
 }
+
+//_________________________B20DCPT173__________________________//
