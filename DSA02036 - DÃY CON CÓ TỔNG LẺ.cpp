@@ -26,11 +26,6 @@ using namespace std;
 
 //_______________________NGUYỄN_NGỌC_TOÀN_______________________//
 
-int Prime(int n) {
-	if (n < 2)return 0;
-	for (int i = 2; i <= sqrt(n); i++)if (n % i == 0)return 0;
-	return 1;
-}
 
 int main() {
 	faster();
@@ -43,8 +38,8 @@ int main() {
 			int sum = 0;
 			v(int) A;
 			FOR(i, 0, n)if (s[i] == '1')sum += M[i], A.pb(M[i]);
-			if (Prime(sum)) {
-				cout(A,sz(A));
+			if (sum % 2 == 1) {
+				cout(A, sz(A));
 				cout << endl;
 			}
 		}
