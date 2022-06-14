@@ -26,21 +26,16 @@ using namespace std;
 
 //_______________________NGUYỄN_NGỌC_TOÀN_______________________//
 
-bool check(string s,  int k) {
-	int count = 0;
-	for (auto c : s)if (c == '1')count++;
-	if (count == k)return true;
-	return false;
-}
 
 int main() {
 	faster();
 	run() {
 		int n, k; cin >> n >> k;
 		FOR(i, 0, pow(2, n)) {
-			auto s = bitset<20>(i).to_string();
-			s = s.substr(20 - n, n);
-			if (check(s, k))cout << s << endl;
+			auto s = bitset<20>(i).to_string().substr(20 - n, n);
+			string tmp = s;
+			sort(all(s));
+			if (s.find(string(k, '1')) != -1 && s.find(string(k + 1, '1')) == -1)cout << tmp << endl;
 		}
 	}
 }
