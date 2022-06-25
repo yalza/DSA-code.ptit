@@ -1,32 +1,60 @@
-#include<iostream>
-#include<stdbool.h>
+#include<bits/stdc++.h>
+#define mod                 1000000007
+#define ll                  long long
+#define	p(x)                pair<x,x>
+#define v(x)                vector<x>
+#define Tree                node*
+#define sz(a)               a.size()
+#define x                   first
+#define y                   second
+#define pb(a)               push_back(a)
+#define pf(a)               push_front(a)
+#define FOR(i, l, r)        for (int i = l; i < r; i++)
+#define FORX(i, l, r, x)    for (int i = l; i < r; i += x)
+#define FORD(i, l, r)       for (int i = l; i >= r; i--)
+#define correct(x, y, n, m) 0 <= (x)&&(x) < (n)& & 0 <= (y)&&(y) < (m)
+#define cin(M, n)           FOR(i, 0, n)cin >> M[i]
+#define cout(M, n)          FOR(i, 0, n)cout << M[i] << " "
+#define rs(M, x)            memset(M, x, sizeof(M))
+#define reset()             FOR(i, 0, 1001)A[i].clear(), check[i] = false
+#define faster()            cin.tie(0); ios_base::sync_with_stdio(false); cout.tie(0);
+#define run()               int t; cin >> t; while (t--)
+#define pq(x)               priority_queue<x>
+#define neg_pq(x)           priority_queue<x, vector<x>, greater<x>>
+#define all(M)              M.begin(), M.end()
 using namespace std;
-bool f;
-void Try(int M[][100], string s, int n, int x, int y) {
-	if (M[0][0] == 0 || M[n - 1][n - 1] == 0)return;
+
+//_______________________NGUYỄN_NGỌC_TOÀN_______________________//
+
+int n;
+int M[100][100];
+v(string) S;
+
+void Try(int x, int y, string s) {
+	if (x >= n || y >= n)return;
+	if (M[x][y] == 0)return;
 	if (x == n - 1 && y == n - 1) {
-		f = true;
-		cout << s << " "; return;
+		S.pb(s);
+		return;
 	}
-	if (M[x + 1][y] == 1 && x < n) {
-		Try(M, s + "D", n, x + 1, y);
-	}
-	if (M[x][y + 1] == 1 && y < n) {
-		Try(M, (s + "R"), n, x, y + 1);
-	}
+	Try(x + 1, y, s + "D");
+	Try(x, y + 1, s + "R");
 }
+
 int main() {
-	int t; cin >> t;
-	while (t--) {
-		f = false;
-		int n; cin >> n;
-		int M[100][100];
-		for (int i = 0; i < n; i++)
-			for (int j = 0; j < n; j++)
-				cin >> M[i][j];
-		string s = "";
-		Try(M, s, n, 0, 0);
-		if (f == false)cout << -1;
-		cout << endl;
+	faster();
+	run() {
+		cin >> n;
+		FOR(i, 0, n)FOR(j, 0, n)cin >> M[i][j];
+		S.clear();
+		Try(0, 0, "");
+		if (sz(S) == 0)cout << -1 << endl;
+		else {
+			for (auto c : S)cout << c << " ";
+			cout << endl;
+		}
+
 	}
 }
+
+//__________________________B20DCPT173__________________________//
