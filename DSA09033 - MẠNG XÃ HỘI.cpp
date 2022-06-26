@@ -35,7 +35,7 @@ bool DFS(int u) {
 	return true;
 }
 
-string Internet() {
+string mangXaHoi() {
 	FORD(i, 1, n + 1)if (!DFS(i))return "NO\n";
 	return "YES\n";
 }
@@ -52,7 +52,7 @@ int main() {
 			S.insert({ a,b });
 			S.insert({ b,a });
 		}
-		cout << Internet();
+		cout << mangXaHoi();
 	}
 	return 0;
 }
